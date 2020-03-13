@@ -1,0 +1,57 @@
+<section id="search" >
+  <div class="=container">
+    <div class="row">
+      <div class="col-sm-offset-2 col-sm-8">
+        <form class="form-horizontal" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="IDs">Search Type</label>
+            <div class="col-sm-4">
+             
+              <div class="form-inline float-left mr-1">
+                <select class="form-control" [value]="searchType"
+                        (change)="changeSearchType($event.target.value)">
+                  <option value="1">Sponsor/Co-sponsor ID</option>
+                  <option value="2">Member ID</option>
+                  <option value="3">Referral ID</option>
+                  
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+
+                <input class="form-control" type="text" id="PersonID" placeholder="ID">
+
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="lastname">Last Name</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" id="lastname" placeholder="Last name">
+            </div>
+            <label class="col-sm-2 control-label" for="firstname">First Name</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" id="firstname" placeholder="First name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="dateofbirth">Date of Birth</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" id="dateofbirth" placeholder="Date of Birth">
+            </div>
+            <label class="col-sm-2 control-label" for="immigartionNo">Immigration #</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" id="immigartionNo" placeholder="Immigration #">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success btn-lg" type="button" (click)="onSearch()">Search</button>&nbsp;
+              <button class="btn btn-warning btn-lg" type="button" (click)="onCancel()">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

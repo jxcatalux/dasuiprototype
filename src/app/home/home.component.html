@@ -1,0 +1,131 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <section id="search" >
+        <div class="=container">
+          <div class="row">
+            <div class="col-sm-offset-2 col-sm-8">
+              <form class="form-horizontal" [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm)">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="IDs">Search Type</label>
+                  <div class="col-sm-4">
+                   
+                    <div class="form-inline float-left mr-1">
+                      <select class="form-control" formControlName="searchtype" [value]="searchType"
+                              (change)="changeSearchType($event.target.value)">
+                        <option value="1">Sponsor/Co-sponsor ID</option>
+                        <option value="2">Member ID</option>
+                        <option value="3">Referral ID</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+      
+                      <input class="form-control" type="text" formControlName="PersonID" placeholder="ID">
+      
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="lastname" >Last Name</label>
+                  <div class="col-sm-4">
+                    <input class="form-control" type="text" formControlName="lastname" placeholder="Last name">
+                  </div>
+                  <label class="col-sm-2 control-label" for="firstname">First Name</label>
+                  <div class="col-sm-4">
+                    <input class="form-control" type="text" formControlName="firstname" placeholder="First name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="dateofbirth">Date of Birth</label>
+                  <div class="col-sm-4">
+                    <input class="form-control" type="text" formControlName="dateofbirth" placeholder="Date of Birth">
+                  </div>
+                  <label class="col-sm-2 control-label" for="immigartionNo">Immigration #</label>
+                  <div class="col-sm-4">
+                    <input class="form-control" type="text" formControlName="immigartionNo" placeholder="Immigration #">
+                  </div>
+                </div>
+      
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-success btn-lg" type="submit" name="submit">Search</button>&nbsp;
+                    <button class="btn btn-warning btn-lg" type="button" (click)="onCancel(searchForm)">Cancel</button>
+                   
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="row" *ngIf="itemsreturned===0">
+    <div class="col-md-12" >
+      <span>No results found {{ itemsreturned }} </span>
+
+    </div>
+  </div>
+  <div class="row" *ngIf="itemsreturned>0">
+    <div class="col-md-12" >
+      <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th class="th-sm">Sponsor Last Name
+            </th>
+            <th class="th-sm">Sponsor First Name
+            </th>
+            <th class="th-sm">Sponsor Date Of Birth
+            </th>
+            <th class="th-sm">Member Last Name
+            </th>
+            <th class="th-sm">Member First Name
+            </th>
+            <th class="th-sm">Member Date of Birth
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of debtors">
+            <td>{{ item.lastname }}</td>
+            <td>{{ item.firstname }}</td>
+            <td>{{ item.dob }}</td>
+            <td>{{ item.memberLName }}</td>
+            <td>{{ item.memberFName }}</td>
+            <td>{{ item.memberdob }}</td>
+            
+        </tr>
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+  <div class="row" *ngIf="itemsreturned>0">
+    <div class="col-md-2" >
+      <div class="form-inline pull-left">
+        <select class="form-control" [value]="debtorsPerPage"
+                (change)="changePageSize($event.target.value)">
+          <option value="3">3 per Page</option>
+          <option value="4">4 per Page</option>
+          <option value="6">6 per Page</option>
+          <option value="8">8 per Page</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6 col-md-offset pull-left" >
+      <div class="btn-group mr-2 ">
+        <button *ngFor="let page of pageNumbers" (click)="changePage(page)"
+                class="btn btn-default"
+                [class.active]="page == selectedPage">
+          {{page}}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- dropdown -->
+

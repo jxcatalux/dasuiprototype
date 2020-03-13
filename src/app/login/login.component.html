@@ -1,0 +1,66 @@
+<nav class="navbar  navbar-fixed-top navbar-light " style="background-color: #000000;">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="webapp.html">
+        <img src="assets/images/ontario.png" class="img-responsive">
+      </a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- <a class="btn btn-primary navbar-btn pull-left" href="#" role="button">Sign up</a> -->
+    </div>
+
+
+  </div>
+</nav>
+
+
+<section id="intro-header">
+  <div class="container">
+    <!-- row 2 -->
+    <div class="row">
+      <div class="wrap-headline" >
+        <h1 class="text-center">Debt Administration System</h1>
+        <h2 class="text-center">version: 1.0.0</h2>
+        <hr>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="signin" class="form-inline text-center hidden-element">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">@</div>
+              <input type="text" class="form-control" formControlName="username"
+                 id="signin-email" placeholder="Email"
+                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+            </div>
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+              <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">*</div>
+              <input type="password" id="signin-password" formControlName="password"
+                  class="form-control" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+
+            </div>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+
+          </div>
+          <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Login
+        </button>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

@@ -1,0 +1,7 @@
+---
+application:
+- name: DAS-Login
+  memory: 1G
+  disk_quota: 512MB
+  buildpack: staticfile_buildpack
+  instance: 1
